@@ -1,0 +1,12 @@
+{
+  "name": "mapsort",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "esm": "^3.2.22",
+    "lodash": "^4.17.11",
+    "microtime": "^3.0.0"
+  }
+}
