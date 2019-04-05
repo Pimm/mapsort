@@ -8,5 +8,15 @@
     "esm": "^3.2.22",
     "lodash": "^4.17.11",
     "microtime": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "scripts": {
+    "build-conceptual-benchmark": "webpack --config benchmarks/conceptual/webpack.config.js"
   }
 }
