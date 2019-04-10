@@ -2,7 +2,7 @@
  * This is the function which can be passed to Array.prototype.sort to make it behave as if no function had been
  * passed.
  *
- * SortCompare (as used by Array.prototype.sort) is defined as follows:
+ * SortCompare (as used by Array.prototype.sort) is defined in ECMAScript 2015 as follows:
  *    1. If x and y are both undefined, return +0.
  *    2. If x is undefined, return 1.
  *    3. If y is undefined, return −1.
