@@ -12,11 +12,15 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
+    "jest": "^24.7.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
   "scripts": {
-    "build-conceptual-benchmark": "webpack --config benchmarks/conceptual/webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "build-conceptual-benchmark": "webpack --config benchmarks/conceptual/webpack.config.js",
+    "test": "jest"
   }
 }
