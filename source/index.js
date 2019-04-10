@@ -17,8 +17,8 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	forEach.call(listAsObject, (item, index) => {
 		// Push the index to the array of indexes.
 		indexes.push(index);
-		// Call the map callback to obtain the "sortable" value, and push it to the array of "sortable" values. [3]
-		sortables.push(mapCallback.call(undefined, item, index, listAsObject));
+		// Call the map callback to obtain the "sortable" value, and add it to the array of "sortable" values. [3]
+		sortables[index] = mapCallback.call(undefined, item, index, listAsObject);
 	});
 	// If no compare function was passed, use this default function, which causes Array.prototype.sort to apply its
 	// default behaviour.
@@ -27,9 +27,15 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	}
 	// Sort the indexes by looking up and comparing the "sortable" values associated with those indexes.
 	indexes.sort((firstIndex, secondIndex) => compareFunction(sortables[firstIndex], sortables[secondIndex]));
-	// The indexes array is now in the correct order. Create a new array which contains the original values, but in that
-	// correct order. This array is the result.
-	return indexes.map(index => list[index]);
+	// The indexes in the indexes array are now in the correct order. Create a new array which contains the original values, but
+	// in that correct order.
+	const result = indexes.map(index => list[index]);
+	// In case the passed list is sparse ‒ meaning it does not have a value for every index in [0…length) ‒ the result array
+	// should include "room" for those missing values.
+	if (result.length != list.length) {
+		result.length = list.length;
+	}
+	return result;
 }
 
 // The implementation above is designed to mimic Array.prototype.map as defined in ECMAScript 2015.
