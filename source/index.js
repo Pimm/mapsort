@@ -4,6 +4,9 @@ import defaultCompareFunction from './defaultCompareFunction';
 const { forEach } = [];
 /**
  * Sorts the passed list based on mapped values.
+ *
+ * Note that contrary to how sorting usually works in JavaScript, the passed array is not sorted in-place. A new,
+ * sorted, array is returned and the list which is passed remains unaltered.
  */
 export default function mapSort(list, mapCallback, compareFunction) {
 	// Ensure the map callback is a function. [1]
