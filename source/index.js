@@ -26,7 +26,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 		compareFunction = defaultCompareFunction;
 	}
 	// Sort the indexes by looking up and comparing the "sortable" values associated with those indexes.
-	indexes.sort((aIndex, bIndex) => compareFunction(sortables[aIndex], sortables[bIndex]));
+	indexes.sort((firstIndex, secondIndex) => compareFunction(sortables[firstIndex], sortables[secondIndex]));
 	// The indexes array is now in the correct order. Create a new array which contains the original values, but in that
 	// correct order. This array is the result.
 	return indexes.map(index => list[index]);
