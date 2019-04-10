@@ -1,35 +1,38 @@
 import names from '../../names.json';
 import Benchmark from 'benchmark';
 import _ from 'lodash';
-
-const manyNames = [];
-for (let iteration = 0; 1000 != iteration; iteration++) {
-	manyNames.push(...names);
-}
-
+/**
+ * A naive implementation, which calls the map callback (twice) every time the compare callback is called.
+ */
 function naive(input, mapper, sorter) {
-	input.sort((a, b) => sorter(mapper(a), mapper(b)));
+	return input.sort((a, b) => sorter(mapper(a), mapper(b)));
 }
-
+/**
+ * This implementation creates a Map object, which maps the input item to the "sortable" value.
+ */
 function mapSortWithMap(input, mapper, sorter) {
 	const sortables = new Map();
 	input.forEach(item => {
 		sortables.set(item, mapper(item));
 	});
-	input.sort((a, b) => sorter(sortables.get(a), sortables.get(b)));
+	return input.sort((a, b) => sorter(sortables.get(a), sortables.get(b)));
 }
-
-function mapSortWithDoubleArray(input, mapper, sorter) {
-	const sortables = [];
+/**
+ * This implementation creates an array with indexes and one with "sortable" values, and then sorts the former array.
+ */
+function mapSortWithTwoArrays(input, mapper, sorter) {
 	const indexes = [];
-	input.forEach((item, i) => {
-		indexes.push(i);
+	const sortables = [];
+	input.forEach((item, index) => {
+		indexes.push(index);
 		sortables.push(mapper(item));
 	});
 	indexes.sort((aIndex, bIndex) => sorter(sortables[aIndex], sortables[bIndex]));
 	return indexes.map(index => input[index]);
 }
-
+/**
+ * This implementation upgrades items to a objects containing the original item and the associated "sortable" value.
+ */
 function mapSortWithShortLivedObjects(input, mapper, sorter) {
 	const sortables = [];
 	input.forEach(item => {
@@ -71,7 +74,7 @@ function runSuite(list) {
 			mapSortWithMap([...list], map, sort);
 		})
 		.add('using two arrays', () => {
-			mapSortWithDoubleArray([...list], map, sort);
+			mapSortWithTwoArrays([...list], map, sort);
 		})
 		.add('using objects   ', () => {
 			mapSortWithShortLivedObjects([...list], map, sort);
