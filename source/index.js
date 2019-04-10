@@ -14,11 +14,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	const indexes = [];
 	// Create an array which will contain the "sortable" values
 	const sortables = [];
-	// Convert the passed list to an object. [2] Note that a TypeException should be thrown if the passed list is
-	// undefined or null, but that will happen when forEach is called on it a few lines below.
-	if (undefined === list || null === list) {
-		throw new TypeError(`Can't convert ${list} to object`);
-	}
+	// Convert the passed list to an object. [2]
 	const listAsObject = Object(list);
 	// Iterate over the items in the list, filling the two arrays.
 	const tail = [];
@@ -32,13 +28,13 @@ export default function mapSort(list, mapCallback, compareFunction) {
 			tail.push(item);
 			return;
 		}
-		// Push the index to the array of indexes.
-		indexes.push(index);
 		// If the default compare function will be used, ensure the "sortable" value is not a symbol. That function does
 		// not accept symbol values. [5]
 		if (undefined === compareFunction && 'symbol' === typeof sortable) {
 			throw new TypeError(`Can't convert symbol to string`);
 		}
+		// Push the index to the array of indexes.
+		indexes.push(index);
 		// Add the "sortable" value to the array.
 		sortables[index] = sortable;
 	});
