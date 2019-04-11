@@ -57,8 +57,29 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	}
 	return result;
 }
-
-// The implementation above is designed to mimic Array.prototype.map and Array.prototype.sort as defined in ECMAScript 2015.
+// This implementation uses two temporary arrays, one which contains the indexes and one which contains "sortable"
+// values.
+//
+// Imagine we have this array as input:
+//   [{number: 0xC6}, {number: 0x7B}, {number: 0xD5}]
+// and this map callback:
+//   object => object.number
+//
+// This implementation sorts that input array in three steps. The first step is to create and fill the two arrays.
+// The array of indexes will be:
+//   [0, 1, 2]
+// The array of "sortable" values will be:
+//   [0xC6, 0x7B, 0xD5]
+//
+// As the second step, the array of indexes is sorted (in-place) to represent correct order.
+// The array of indexes becomes:
+//   [1, 0, 2]
+// (because 0x7B < 0xC6 < 0xD5).
+//
+// Finally, the resulting array is created and filled according to the order defined by the array of indexes:
+//   [{number: 0x7B}, {number: 0xC6}, {number: 0xD5}]
+//
+// This implementation is designed to mimic Array.prototype.map and Array.prototype.sort as defined in ECMAScript 2015.
 //
 // [1] See the spec for Array.prototype.map:
 //     4. If IsCallable(callbackfn) is false, throw a TypeError exception.
