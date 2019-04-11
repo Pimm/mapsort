@@ -19,14 +19,15 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	const sortables = [];
 	// Convert the passed list to an object. [2]
 	const listAsObject = Object(list);
-	// Iterate over the items in the list, filling the two arrays.
+	// Iterate over the items in the list, filling the two arrays (and filling the tail if any "sortable" value is
+	// undefined).
 	const tail = [];
 	var sortable;
 	forEach.call(listAsObject, (item, index) => {
 		// Call the map callback to obtain the "sortable" value. [3]
 		sortable = mapCallback.call(undefined, item, index, listAsObject);
-		// If the "sortable" value is undefined, exclude this item from sorting and add it to the tail. undefined items shall
-		// appear at the end of the resulting array. [4]
+		// If the "sortable" value is undefined, exclude this item from sorting and add it to the tail. undefined items
+		// shall appear at the end of the resulting array. [4]
 		if (undefined === sortable) {
 			tail.push(item);
 			return;
@@ -41,8 +42,8 @@ export default function mapSort(list, mapCallback, compareFunction) {
 		// Add the "sortable" value to the array.
 		sortables[index] = sortable;
 	});
-	// If no compare function was passed, use this default function, which causes Array.prototype.sort to apply its
-	// default behaviour.
+	// If no compare function was passed, use this default function. This mimics the behaviour of Array.prototype.sort
+	// with no compare function.
 	if (undefined === compareFunction) {
 		compareFunction = defaultCompareFunction;
 	}
