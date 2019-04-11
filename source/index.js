@@ -17,23 +17,21 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	const indexes = [];
 	// Create an array which will contain the "sortable" values
 	const sortables = [];
-	// Convert the passed list to an object. [2]
-	const listAsObject = Object(list);
 	// Iterate over the items in the list, filling the two arrays (and filling the tail if any "sortable" value is
 	// undefined).
 	const tail = [];
 	var sortable;
-	forEach.call(listAsObject, (item, index) => {
-		// Call the map callback to obtain the "sortable" value. [3]
+	forEach.call(list, (item, index, listAsObject) => {
+		// Call the map callback to obtain the "sortable" value. [2]
 		sortable = mapCallback.call(undefined, item, index, listAsObject);
 		// If the "sortable" value is undefined, exclude this item from sorting and add it to the tail. undefined items
-		// shall appear at the end of the resulting array. [4]
+		// shall appear at the end of the resulting array. [3]
 		if (undefined === sortable) {
 			tail.push(item);
 			return;
 		}
 		// If the default compare function will be used, ensure the "sortable" value is not a symbol. That function does
-		// not accept symbol values. [5]
+		// not accept symbol values. [4]
 		if (undefined === compareFunction && 'symbol' === typeof sortable) {
 			throw new TypeError(`Can't convert symbol to string`);
 		}
@@ -65,13 +63,11 @@ export default function mapSort(list, mapCallback, compareFunction) {
 // [1] See the spec for Array.prototype.map:
 //     4. If IsCallable(callbackfn) is false, throw a TypeError exception.
 // [2] See the spec for Array.prototype.map:
-//     1. Let O be ToObject(this value).
-// [3] See the spec for Array.prototype.map:
 //    10. d. iii. Let mappedValue be Call(callbackfn, T, «kValue, k, O»).
-// [4] See the spec for SortCompare:
+// [3] See the spec for SortCompare:
 //     2. If x is undefined, return 1.
 //     3. If y is undefined, return −1.
-// [5] See the spec for SortCompare:
+// [4] See the spec for SortCompare:
 //     5. Let xString be ToString(x).
 //     6. ReturnIfAbrupt(xString).
 //     7. Let yString be ToString(y).
