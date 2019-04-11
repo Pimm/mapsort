@@ -64,8 +64,11 @@ export default function mapSort(list, mapCallback, compareFunction) {
 //   [{number: 0xC6}, {number: 0x7B}, {number: 0xD5}]
 // and this map callback:
 //   object => object.number
+// and this compare function:
+//   (first, second) => first - second
 //
-// This implementation sorts that input array in three steps. The first step is to create and fill the two arrays.
+// This implementation sorts that input array in three steps. The first step is to create and fill the two temporary
+// arrays.
 // The array of indexes will be:
 //   [0, 1, 2]
 // The array of "sortable" values will be:
