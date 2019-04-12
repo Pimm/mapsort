@@ -1,7 +1,7 @@
 import defaultCompareFunction from './defaultCompareFunction';
 
-// Steal the forEach function from this empty array.
-const { forEach } = [];
+// Steal the forEach and push functions from this empty array.
+const { forEach, push } = [];
 /**
  * Sorts the passed list based on mapped values.
  *
@@ -31,7 +31,8 @@ export default function mapSort(list, mapCallback, compareFunction) {
 			return;
 		}
 		// If the default compare function will be used, ensure the "sortable" value is not a symbol. That function does
-		// not accept symbol values. [4]
+		// not accept symbol values. [4] (Note that we are compiling this code with Babel, which makes the typeof operator
+		// work as expected even when a Symbol polyfill is in use.)
 		if (undefined === compareFunction && 'symbol' === typeof sortable) {
 			throw new TypeError(`Can't convert symbol to string`);
 		}
@@ -49,7 +50,12 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	indexes.sort((firstIndex, secondIndex) => compareFunction(sortables[firstIndex], sortables[secondIndex]));
 	// The indexes in the indexes array are now in the correct order. Create a new array which contains the original values, but
 	// in that correct order, followed by the tail.
-	const result = [...indexes.map(index => list[index]), ...tail];
+	// const result = [...indexes.map(index => list[index]), ...tail];
+	//   ↓ (The line above is replaced by these four lines below for engines which don't support the spread syntax.)
+	const result = indexes.map(index => list[index]).concat(tail);
+	if (0 != tail.length) {
+		push.apply(result, tail);
+	}
 	// In case the passed list is sparse ‒ meaning it does not have a value for every index in [0…length) ‒ the result array
 	// should include "room" for those missing values.
 	if (result.length != list.length) {
