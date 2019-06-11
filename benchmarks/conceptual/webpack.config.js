@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-	"mode": "development",
+	"mode": "production",
 	"entry": "./benchmarks/conceptual/source/index.js",
 	"output": {
 		"path": path.join(__dirname, 'compiled'),
