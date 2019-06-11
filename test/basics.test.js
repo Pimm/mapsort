@@ -5,6 +5,7 @@
 import mapSort from '../source/index';
 
 test('basics', () => {
+	// This tests a basic use case: an array of numbers which are represented as strings.
 	const array = ['40', '186', '2.4', '.47'];
 	const actualResult = mapSort(
 		array,

@@ -13,7 +13,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	if ('function' !== typeof mapCallback) {
 		throw new TypeError(`${mapCallback} is not a function`);
 	}
-	// Create an array which will contain the indexes of the items in the list.
+	// Create an array which will contain the indexes (or "indices") of the items in the list.
 	const indexes = [];
 	// Create an array which will contain the "sortable" values
 	const sortables = [];
@@ -88,7 +88,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 // Finally, the resulting array is created and filled according to the order defined by the array of indexes:
 //   [{number: 0x7B}, {number: 0xC6}, {number: 0xD5}]
 //
-// This implementation is designed to mimic Array.prototype.map and Array.prototype.sort as defined in ECMAScript 2015.
+// This implementation is designed to mimic [].map and [].sort as defined in ECMAScript 2015.
 //
 // [1] See the spec for Array.prototype.map:
 //     4. If IsCallable(callbackfn) is false, throw a TypeError exception.

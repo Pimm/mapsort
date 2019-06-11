@@ -8,6 +8,8 @@ function identity(input) {
 	return input;
 }
 test('sparse-array', () => {
+	// mapSort is designed to mimic [].sort (and [].map). This tests whether sparse arrays are handled properly. [].sort
+	// puts the undefined values at the end, and therefore so should mapSort.
 	const array = [];
 	array[0] = 0x6A;
 	array[8] = 0xEF;
