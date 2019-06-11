@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import mapSort from '../source/index';
+import mapSort from '..';
 
 test('map', () => {
 	// mapSort is designed to mimic [].map (and [].sort). This tests whether the arguments passed to the map callback are

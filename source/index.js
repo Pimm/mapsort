@@ -11,7 +11,10 @@ const { forEach, push } = [];
 export default function mapSort(list, mapCallback, compareFunction) {
 	// Ensure the map callback is a function. [1]
 	if ('function' !== typeof mapCallback) {
-		throw new TypeError(`${mapCallback} is not a function`);
+		// throw new TypeError(`${mapCallback} is not a function`);
+		//   ↓ (We are compiling this code with Babel, and our current configuration compiles the above into something
+		//     overly complex.)
+		throw new TypeError(mapCallback + ' is not a function');
 	}
 	// Create an array which will contain the indexes (or "indices") of the items in the list.
 	const indexes = [];
@@ -31,8 +34,8 @@ export default function mapSort(list, mapCallback, compareFunction) {
 			return;
 		}
 		// If the default compare function will be used, ensure the "sortable" value is not a symbol. That function does
-		// not accept symbol values. [4] (Note that we are compiling this code with Babel, which makes the typeof operator
-		// work as expected even when a Symbol polyfill is in use.)
+		// not accept symbol values. [4] (Note that we are compiling this code with Babel, and our current configuration
+		// makes the typeof operator work as expected even when a Symbol polyfill is in use.)
 		if (undefined === compareFunction && 'symbol' === typeof sortable) {
 			throw new TypeError(`Can't convert symbol to string`);
 		}
@@ -48,16 +51,16 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	}
 	// Sort the indexes by looking up and comparing the "sortable" values associated with those indexes.
 	indexes.sort((firstIndex, secondIndex) => compareFunction(sortables[firstIndex], sortables[secondIndex]));
-	// The indexes in the indexes array are now in the correct order. Create a new array which contains the original values, but
-	// in that correct order, followed by the tail.
+	// The indexes in the indexes array are now in the correct order. Create a new array which contains the original
+	// values, but in that correct order, followed by the tail.
 	// const result = [...indexes.map(index => list[index]), ...tail];
 	//   ↓ (The line above is replaced by these four lines below for engines which don't support the spread syntax.)
 	const result = indexes.map(index => list[index]).concat(tail);
 	if (0 != tail.length) {
 		push.apply(result, tail);
 	}
-	// In case the passed list is sparse ‒ meaning it does not have a value for every index in [0…length) ‒ the result array
-	// should include "room" for those missing values.
+	// In case the passed list is sparse ‒ meaning it does not have a value for every index in [0…length) ‒ the result
+	// array should include "room" for those missing values.
 	if (result.length != list.length) {
 		result.length = list.length;
 	}

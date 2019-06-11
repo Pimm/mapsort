@@ -1,25 +1,32 @@
 {
   "name": "mapsort",
+  "description": "Performant sorting for complex input",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "compiled/cjs/mapsort.min.js",
+  "module": "compiled/esm/mapsort.min.js",
+  "unpkg": "compiled/iife/mapsort.min.js",
+  "files": [
+    "source",
+    "compiled"
+  ],
   "license": "MIT",
-  "dependencies": {
-    "benchmark": "^2.1.4",
-    "esm": "^3.2.22",
-    "lodash": "^4.17.11",
-    "microtime": "^3.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "babel-jest": "^24.7.1",
-    "babel-loader": "^8.0.5",
-    "jest": "^24.7.1",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
+    "benchmark": "^2.1.4",
+    "jest": "^24.8.0",
+    "lodash": "^4.17.11",
+    "rollup": "^1.15.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-babel-minify": "^8.0.0",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "rollup --config rollup.config.js",
     "build-conceptual-benchmark": "webpack --config benchmarks/conceptual/webpack.config.js",
     "test": "jest"
   }
