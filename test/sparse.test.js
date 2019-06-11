@@ -24,3 +24,36 @@ test('sparse-array', () => {
 	expectedResult.length = 13;
 	expect(actualResult).toEqual(expectedResult);
 });
+test('sparse-array-after-map', () => {
+	// mapSort is designed to mimic [].sort (and [].map). This tests whether arrays which are sparse after the map
+	// operation are handled properly as well.
+	const array = [
+		{ value: 0x6A },
+		{}, {},
+		{}, {},
+		{}, {},
+		{},
+		{ value: 0xEF },
+		{},
+		{ value: 0x8E },
+		{},
+		{ value: 0x78 }
+	];
+	const actualResult = mapSort(
+		array,
+		object => object.value,
+		(first, second) => first - second
+	);
+	const expectedResult = [
+		{ value: 0x6A },
+		{ value: 0x78 },
+		{ value: 0x8E },
+		{ value: 0xEF },
+		{}, {},
+		{}, {},
+		{}, {},
+		{}, {},
+		{}
+	];
+	expect(actualResult).toEqual(expectedResult);
+})
