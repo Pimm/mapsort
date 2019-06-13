@@ -21,7 +21,7 @@ This works!
 
 The only drawback is that `parseFloat` is called twice every time our compare function is used, resulting in 6 `parseFloat` calls in this example (4 if the original order were optimal).
 
-A dozen of `parseFloat` calls is fine. However, next time we might be sorting names. _Lucia Ávila_ would like to appear amidst the other **A**s, and we have to strip [diacritics](https://en.wikipedia.org/wiki/Diacritic). _Amelie de Wit_ would like to appear amidst the other **W**s, and we have to detect [tussenvoegsels](https://en.wikipedia.org/wiki/Tussenvoegsel). As our preprocessing becomes more expensive and our arrays become longer, this could produce perceivable hiccups.
+A dozen of `parseFloat` calls is fine. However, next time we might be sorting names. _Lucia Ávila_ would like to appear amidst the other **A**s, and we have to correctly handle [diacritics](https://en.wikipedia.org/wiki/Diacritic). _Amelie de Wit_ would like to appear amidst the other **W**s, and we have to detect [tussenvoegsels](https://en.wikipedia.org/wiki/Tussenvoegsel). As our preprocessing becomes more expensive and our arrays become longer, this could produce perceivable hiccups.
 
 `mapsort` reduces the number of times an element has to be preprocessed to 1:
 ```javascript
@@ -34,7 +34,7 @@ mapSort(
 
 # Installation
 
-Install `mapsort` using npm or Yarn and import it:
+Install `mapsort` using npm or Yarn and import the function:
 ```javascript
 import mapSort from 'mapsort';
 ```
@@ -43,6 +43,7 @@ Alternatively, include `mapsort` through unpkg:
 ```html
 <script src="https://unpkg.com/mapsort@^1.0.0"></script>
 ```
+This alternative makes the function available at `window.mapSort`.
 
 # Usage
 
@@ -57,3 +58,8 @@ const sortedArray = mapSort(
 	}
 );
 ```
+
+## Notes
+
+* Contrary to [`[].sort`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), this library **does not sort in-place**. It returns a new, sorted array. The original array is left untouched.
+* This library maps each element of your array to a "sortable" version, but returns a sorted array containing the originals. I.e. in the example above `['1.62', '3.35', '12.4']` is returned; not `[1.62, 3.35, 12.4]`.
