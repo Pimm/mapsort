@@ -5,9 +5,11 @@
   "main": "compiled/cjs/mapsort.min.js",
   "module": "compiled/esm/mapsort.min.js",
   "unpkg": "compiled/iife/mapsort.min.js",
+  "types": "index.d.ts",
   "files": [
     "source",
-    "compiled"
+    "compiled",
+    "index.d.ts"
   ],
   "license": "MIT",
   "dependencies": {},
