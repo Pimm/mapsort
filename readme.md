@@ -51,10 +51,14 @@ This alternative makes the function available at `window.mapSort`.
 const sortedArray = mapSort(
 	array,
 	element => {
-		// Return the version of "element" which is ideal for sorting. This version is passed to the compare function below.
+		// Return the version of "element" which is ideal for
+		// sorting. This version is passed to the compare
+		// function below.
 	},
 	(a, b) => {
-		// Return a negative number if a comes before b; a positive number if b comes before a; or 0 if they are equal.
+		// Return a negative number if a comes before b;
+		// a positive number if b comes before a; or 0 if they
+		// are equal.
 	}
 );
 ```
