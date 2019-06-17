@@ -33,7 +33,7 @@ const { forEach, push } = [];
  * The compare function must always return the same value when a given pair of arguments is passed. If inconsistent
  * results are returned, then the sort order is undefined.
  *
- * #### On the map calllback
+ * #### On the map callback
  *
  * The map callback is called in the same way as `[].map` would: it is called once for every element and that
  * element is passed as the first argument, the index that element has in the original list is passed as the second,
