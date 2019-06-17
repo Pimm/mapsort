@@ -12,7 +12,9 @@
     "index.d.ts"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "typescript": "^3.5.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
@@ -21,15 +23,15 @@
     "benchmark": "^2.1.4",
     "jest": "^24.8.0",
     "lodash": "^4.17.11",
-    "rollup": "^1.15.0",
+    "rollup": "^1.15.6",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-babel-minify": "^8.0.0",
-    "webpack": "^4.33.0",
+    "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
   },
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "build-conceptual-benchmark": "webpack --config benchmarks/conceptual/webpack.config.js",
-    "test": "jest"
+    "test": "jest && tsc --noEmit test/type-test.ts"
   }
 }

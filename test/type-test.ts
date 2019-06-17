@@ -1,0 +1,21 @@
+import mapSort from '..';
+
+// This file is used to test the type definitions in `index.d.ts`.
+
+export function basics(): string[] {
+	return mapSort(
+		['40', '186', '2.4', '.47'],
+		string => parseFloat(string),
+		(first, second) => first - second
+	);
+}
+export function arrayLike(): string[] {
+	const list = {
+		length: 0
+	};
+	return mapSort(
+		list,
+		string => parseFloat(string),
+		(first, second) => first - second
+	);
+}
