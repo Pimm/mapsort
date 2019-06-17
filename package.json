@@ -9,7 +9,8 @@
   "files": [
     "source",
     "compiled",
-    "index.d.ts"
+    "index.d.ts",
+    "copying.txt"
   ],
   "license": "MIT",
   "dependencies": {

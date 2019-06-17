@@ -67,3 +67,12 @@ const sortedArray = mapSort(
 
 * Contrary to [`[].sort`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), this library **does not sort in-place**. It returns a new, sorted array. The original array is left untouched.
 * This library maps each element of your array to a "sortable" version, but returns a sorted array containing the originals. I.e. in the example above `['1.62', '3.35', '12.4']` is returned; not `[1.62, 3.35, 12.4]`.
+
+# License (X11/MIT)
+Copyright (c) 2019 Pimm "de Chinchilla" Hogeling, Edo Rivai
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+**The Software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the Software or the use or other dealings in the Software.**
