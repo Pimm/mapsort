@@ -13,9 +13,6 @@
     "copying.txt"
   ],
   "license": "MIT",
-  "dependencies": {
-    "typescript": "^3.5.2"
-  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
@@ -27,6 +24,7 @@
     "rollup": "^1.15.6",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-babel-minify": "^8.0.0",
+    "typescript": "^3.5.2",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
   },
