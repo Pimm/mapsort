@@ -31,7 +31,7 @@
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "build-conceptual-benchmark": "webpack --config benchmarks/conceptual/webpack.config.js",
-    "test": "jest && tsc --noEmit test/type-test.ts"
+    "test": "jest && tsc --strict --noEmit test/type-test.ts"
   },
   "author": {
     "name": "Nullhouse",
