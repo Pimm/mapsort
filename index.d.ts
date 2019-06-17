@@ -36,7 +36,7 @@
  * and the original list itself is passed as the third and final argument.
  */
 declare function mapSort<T, S>(
-	list: T[],
+	list: ArrayLike<T>,
 	callbackFunction: (value: T, index: number, array: T[]) => S,
 	compareFunction?: (a: S, b: S) => number
 ): T[];
