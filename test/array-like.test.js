@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import mapSort from '..';
+import mapSort from './implementation';
 
 function identity(input) {
 	return input;
