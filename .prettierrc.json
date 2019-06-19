@@ -1,0 +1,6 @@
+{
+	"//1": "💗 Prettier isn't actually used for this project. But automated tools ‒ looking at you, detect-repo-linters",
+	"//2": "‒ are overjoyed to see files like these. So here it is!",
+	"useTabs": true,
+	"singleQuote": true
+}
