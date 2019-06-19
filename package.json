@@ -10,7 +10,8 @@
     "source",
     "compiled",
     "index.d.ts",
-    "copying.txt"
+    "copying.txt",
+    "readme-nl.md"
   ],
   "license": "MIT",
   "devDependencies": {
