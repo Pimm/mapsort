@@ -43,6 +43,7 @@
     "type": "git",
     "url": "https://github.com/Pimm/mapsort.git"
   },
+  "homepage": "https://null.house/open-source/mapsort",
   "keywords": [
     "performance",
     "map",
