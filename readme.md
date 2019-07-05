@@ -1,4 +1,4 @@
-# mapsort &middot; [![license](https://badgen.net/github/license/pimm/mapsort)](https://github.com/Pimm/mapsort/blob/master/copying.txt) [![npm version](https://badgen.net/npm/v/mapsort)](https://www.npmjs.com/package/mapsort) [![Build Status](https://travis-ci.org/Pimm/mapsort.svg?branch=master)](https://travis-ci.org/Pimm/mapsort) [![Coverage Status](https://coveralls.io/repos/github/Pimm/mapsort/badge.svg?branch=master)](https://coveralls.io/github/Pimm/mapsort?branch=master)
+# mapsort &middot; [![License (X11/MIT)](https://badgen.net/github/license/pimm/mapsort)](https://github.com/Pimm/mapsort/blob/master/copying.txt) [![npm version](https://badgen.net/npm/v/mapsort)](https://www.npmjs.com/package/mapsort) [![Build status](https://travis-ci.org/Pimm/mapsort.svg?branch=master)](https://travis-ci.org/Pimm/mapsort) [![Coverage status](https://coveralls.io/repos/github/Pimm/mapsort/badge.svg?branch=master)](https://coveralls.io/github/Pimm/mapsort?branch=master)
 
 Performant sorting for complex input.
 
