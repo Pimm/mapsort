@@ -37,7 +37,7 @@
  */
 declare function mapSort<T, S>(
 	list: ArrayLike<T>,
-	callbackFunction: (value: T, index: number, array: T[]) => S,
+	mapCallback: (value: T, index: number, array: T[]) => S,
 	compareFunction?: (a: S, b: S) => number
 ): T[];
 
