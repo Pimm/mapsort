@@ -37,8 +37,13 @@
  */
 declare function mapSort<T, S>(
 	list: ArrayLike<T>,
-	mapCallback: (value: T, index: number, array: T[]) => S,
+	mapCallback: (value: T, index: number, array: ArrayLike<T>) => S,
 	compareFunction?: (a: S, b: S) => number
 ): T[];
+// The type of the third argument of the map callback could be more specific. The input list is always array-like, but
+// it will commonly be an actual array. Therefore, so will the third argument passed to the map callback. That argument
+// could be typed as an actual array in those cases, either by creating yet another generic type which
+// "extends ArrayLike<T>" or by creating two overloads: one with "T[]" in both places and one with "ArrayLike<T>" in
+// both places. But perhaps that is a lot of added complexity for next to no gain.
 
 export default mapSort;

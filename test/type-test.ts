@@ -5,7 +5,7 @@ import mapSort from '..';
 export function basics(): string[] {
 	return mapSort(
 		['40', '186', '2.4', '.47'],
-		string => parseFloat(string),
+		(string: string, index: number, array: ArrayLike<string>) => parseFloat(string),
 		(first, second) => first - second
 	);
 }
@@ -15,7 +15,7 @@ export function arrayLike(): string[] {
 	};
 	return mapSort(
 		list,
-		string => parseFloat(string),
+		(string: string, index: number, array: ArrayLike<string>) => parseFloat(string),
 		(first, second) => first - second
 	);
 }
