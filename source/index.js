@@ -82,6 +82,8 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	}
 	// Sort the indexes by looking up and comparing the "sortable" values associated with those indexes.
 	indexes.sort((firstIndex, secondIndex) => compareFunction(sortables[firstIndex], sortables[secondIndex]));
+	//   ↓ We could guarantee stability by changing this line:
+	// indexes.sort((firstIndex, secondIndex) => compareFunction(sortables[firstIndex], sortables[secondIndex]) || (firstIndex - secondIndex));
 	// The indexes in the indexes array are now in the correct order. Create a new array which contains the original
 	// values, but in that correct order, followed by the tail.
 	// const result = [...indexes.map(index => list[index]), ...tail];
