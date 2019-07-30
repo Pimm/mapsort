@@ -22,9 +22,8 @@
  *   * return a positive number if b comes before a; or
  *   * return `0` if they are equal.
  *
- * If the compare function returns `0` for two elements, they will most likely appear in the same order in the
- * resulting array as they have in the original list. However, this stable sorting behaviour is not guaranteed by the
- * ECMAScript specification.
+ * If the compare function returns `0` for two elements, they will probably appear in the same order in the resulting
+ * array as they do in the original list.
  *
  * The compare function must always return the same value when a given pair of arguments is passed. If inconsistent
  * results are returned, then the sort order is undefined.

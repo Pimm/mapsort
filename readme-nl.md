@@ -67,8 +67,9 @@ const sortedArray = mapSort(
 
 ## Opmerkingen
 
-* In tegenstelling tot [`[].sort`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), **sorteert deze bibliotheek niet _in-place_**. Er wordt een nieuwe, gesorteerde array teruggegeven. De originele array wordt niet beïnvloed.
-* Deze bibliotheek mapt ieder element in je array naar een "sorteerbare" versie, maar geeft een gesorteerde array terug van de originelen. In het voorbeeld hierboven wordt `['1.62', '3.35', '12.4']` teruggegeven; niet `[1.62, 3.35, 12.4]`.
+* In tegenstelling tot [`[].sort`][mdn-sort], **sorteert deze bibliotheek niet _in-place_**. Er wordt een nieuwe, gesorteerde array teruggegeven. De originele array wordt niet beïnvloed.
+* Deze bibliotheek mapt ieder element in je array naar een "sorteerbare" versie maar geeft een gesorteerde array terug van de originelen. In het voorbeeld hierboven wordt `['1.62', '3.35', '12.4']` teruggegeven; niet `[1.62, 3.35, 12.4]`.
+* Deze bibliotheek sorteert [waarschijnlijk][stable-sorting] stabiel.
 
 # Licentie (X11/MIT)
 Copyright (c) 2019 Pimm "de Chinchilla" Hogeling, Edo Rivai
@@ -78,3 +79,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 **The Software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the Software or the use or other dealings in the Software.**
+
+
+[mdn-sort]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+[stable-sorting]: https://github.com/Pimm/mapsort/blob/master/documentation/stable-sorting-nl.md
