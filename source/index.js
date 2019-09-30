@@ -56,7 +56,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	var sortable;
 	forEach.call(list, (item, index, listAsObject) => {
 		// Call the map callback to obtain the "sortable" value. [2]
-		sortable = mapCallback.call(undefined, item, index, listAsObject);
+		sortable = mapCallback(item, index, listAsObject);
 		// If the "sortable" value is undefined, exclude this item from sorting and add it to the tail. undefined items
 		// shall appear at the end of the resulting array. [3]
 		if (undefined === sortable) {

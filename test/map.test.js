@@ -12,14 +12,14 @@ test('map', () => {
 	mapSort(
 		array,
 		function(number) {
-			actualMapArguments.push([...arguments]);
+			actualMapArguments.push([this, ...arguments]);
 			return number;
 		},
 		(first, second) => first - second
 	);
 	const expectedMapArguments = [];
 	array.map(function(number) {
-		expectedMapArguments.push([...arguments]);
+		expectedMapArguments.push([this, ...arguments]);
 		return number;
 	});
 	expect(actualMapArguments)
