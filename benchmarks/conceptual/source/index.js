@@ -31,6 +31,20 @@ function mapSortWithTwoArrays(input, mapper, sorter) {
 	return indexes.map(index => input[index]);
 }
 /**
+ * This implementation creates a typed array with indexes and a regular array with "sortable" values, and then sorts
+ * the former array.
+ */
+function mapSortWithTwoArraysOneTyped(input, mapper, sorter) {
+	const indexes = new Uint32Array(input.length);
+	const sortables = [];
+	input.forEach((item, index) => {
+		indexes[index] = index;
+		sortables.push(mapper(item));
+	});
+	indexes.sort((aIndex, bIndex) => sorter(sortables[aIndex], sortables[bIndex]));
+	return indexes.map(index => input[index]);
+}
+/**
  * This implementation upgrades items to a objects containing the original item and the associated "sortable" value.
  */
 function mapSortWithShortLivedObjects(input, mapper, sorter) {
@@ -64,19 +78,22 @@ function runSuite(list) {
 	return new Promise(resolve => {
 		const suite = new Benchmark.Suite();
 		suite
-		.add('naive           ', () => {
+		.add('naive                   ', () => {
 			naive([...list], map, sort);
 		})
-		.add('lodash.sortBy   ', () => {
+		.add('lodash.sortBy           ', () => {
 			_.sortBy([...list], [map]);
 		})
-		.add('using Map       ', () => {
+		.add('using Map               ', () => {
 			mapSortWithMap([...list], map, sort);
 		})
-		.add('using two arrays', () => {
+		.add('using two arrays        ', () => {
 			mapSortWithTwoArrays([...list], map, sort);
 		})
-		.add('using objects   ', () => {
+		.add('using two arrays (typed)', () => {
+			mapSortWithTwoArraysOneTyped([...list], map, sort);
+		})
+		.add('using objects           ', () => {
 			mapSortWithShortLivedObjects([...list], map, sort);
 		})
 		.on('cycle', event => {
