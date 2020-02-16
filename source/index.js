@@ -37,6 +37,9 @@ const { forEach, push } = [];
  * The map callback is called in the same way as `[].map` would: it is called once for every element and that
  * element is passed as the first argument, the index that element has in the original list is passed as the second,
  * and the original list itself is passed as the third and final argument.
+ *
+ * For those familiar with Python: the map callback is conceptually similar to the key function you can pass to `sort`
+ * or `sorted`.
  */
 export default function mapSort(list, mapCallback, compareFunction) {
 	// Ensure the map callback is a function. [1]
