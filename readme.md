@@ -58,9 +58,9 @@ const sortedArray = mapSort(
 		// function below.
 	},
 	(a, b) => {
-		// Return a negative number if a comes before b;
-		// a positive number if b comes before a; or 0 if they
-		// are equal.
+		// (Optional.) Return a negative number if a comes
+		// before b; a positive number if b comes before a; or
+		// 0 if they are equal.
 	}
 );
 ```

@@ -58,9 +58,9 @@ const sortedArray = mapSort(
 		// de vergelijkfunctie hieronder.
 	},
 	(a, b) => {
-		// Geef een negatief getal terug als a voor b hoort;
-		// een positief getal als b voor a hoort; of 0 als ze
-		// gelijk zijn.
+		// (Optioneel.) Geef een negatief getal terug als a
+		// voor b hoort; een positief getal als b voor a hoort;
+		// of 0 als ze gelijk zijn.
 	}
 );
 ```
