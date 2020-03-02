@@ -1,7 +1,7 @@
 import defaultCompareFunction from './defaultCompareFunction';
 
 // Steal the forEach and push functions from this empty array.
-const { forEach, push } = [];
+const { forEach } = [];
 /**
  * Sorts the elements of the passed list and returns a new, sorted array. The elements are first mapped to a version
  * which is ideal for sorting before the original elements are ultimately sorted. Doing this in two steps reduces the
@@ -91,14 +91,13 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	// const result = [...indexes.map(index => list[index]), ...tail];
 	//   ↓ (The line above is replaced by these four lines below for engines which don't support the spread syntax.)
 	const result = indexes.map(index => list[index]).concat(tail);
-	if (0 != tail.length) {
-		push.apply(result, tail);
-	}
+
 	// In case the passed list is sparse ‒ meaning it does not have a value for every index in [0…length) ‒ the result
 	// array should include "room" for those missing values.
 	if (result.length != list.length) {
 		result.length = list.length;
 	}
+
 	return result;
 }
 // This implementation uses two temporary arrays, one which contains the indexes and one which contains "sortable"
