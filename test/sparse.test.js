@@ -56,4 +56,24 @@ test('sparse-array-after-map', () => {
 		{}
 	];
 	expect(actualResult).toEqual(expectedResult);
-})
+});
+test('sparse-array-before-and-after-map', () => {
+	// This tests whether mapSort also obeys both rules mentioned above simultaneously.
+	const array = [];
+	array[0] = { value: 0x6A };
+	array[6] = {};
+	array[14] = { value: 0x78 };
+	array[19] = {};
+	const actualResult = mapSort(
+		array,
+		object => object.value,
+		(first, second) => first - second
+	);
+	const expectedResult = [
+		{ value: 0x6A },
+		{ value: 0x78 },
+		{}, {}
+	];
+	expectedResult.length = 20;
+	expect(actualResult).toEqual(expectedResult);
+});
