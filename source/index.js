@@ -1,6 +1,6 @@
 import defaultCompareFunction from './defaultCompareFunction';
 
-// Steal the forEach and push functions from this empty array.
+// Steal the forEach function from this empty array.
 const { forEach } = [];
 /**
  * Sorts the elements of the passed list and returns a new, sorted array. The elements are first mapped to a version
@@ -97,7 +97,6 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	if (result.length != list.length) {
 		result.length = list.length;
 	}
-
 	return result;
 }
 // This implementation uses two temporary arrays, one which contains the indexes and one which contains "sortable"
