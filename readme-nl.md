@@ -15,7 +15,7 @@ Stel je voor dat we deze array van getallen sorteren, vertegenwoordigd als strin
 ```javascript
 ['12.4', '1.62', '3.35']
 ```
-`'3.35'` zou na `'12.4'` worden geplaatst als we sorteren zonder vergelijkfunctie, dus hebben we zo een functie nodig:
+`'12.4'` zou voor `'3.35'` worden geplaatst als we sorteren zonder vergelijkfunctie, dus hebben we zo een functie nodig:
 ```javascript
 ['12.4', '1.62', '3.35'].sort((a, b) => parseFloat(a) - parseFloat(b));
 ```

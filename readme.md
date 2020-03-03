@@ -15,7 +15,7 @@ Imagine we are sorting this array of numbers, represented as strings:
 ```javascript
 ['12.4', '1.62', '3.35']
 ```
-Sorting them with no compare function would place `'3.35'` after `'12.4'`, so we need a such a function:
+Sorting them with no compare function would place `'12.4'` before `'3.35'`, so we need a such a function:
 ```javascript
 ['12.4', '1.62', '3.35'].sort((a, b) => parseFloat(a) - parseFloat(b));
 ```
