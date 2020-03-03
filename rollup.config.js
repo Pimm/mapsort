@@ -1,6 +1,5 @@
 const path = require('path');
 const babel = require('rollup-plugin-babel');
-const minify = require('rollup-plugin-babel-minify');
 
 const packageConfiguration = require('./package.json');
 
@@ -9,20 +8,22 @@ export default {
 	output: [
 		{
 			format: 'esm',
-			file: path.join('compiled', 'esm', `${packageConfiguration.name}.min.js`)
+			file: path.join('compiled', 'esm', `${packageConfiguration.name}.min.js`),
+			compact: true
 		},
 		{
 			format: 'cjs',
-			file: path.join('compiled', 'cjs', `${packageConfiguration.name}.min.js`)
+			file: path.join('compiled', 'cjs', `${packageConfiguration.name}.min.js`),
+			compact: true
 		},
 		{
 			format: 'iife',
 			file: path.join('compiled', 'iife', `${packageConfiguration.name}.min.js`),
-			name: 'mapSort'
+			name: 'mapSort',
+			compact: true
 		}
 	],
 	plugins: [
-		babel(),
-		minify({ comments: false })
+		babel({ comments: false, minified: true })
 	]
 };

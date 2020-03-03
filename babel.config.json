@@ -1,1 +1,11 @@
-.babelrc
+{
+	"presets": [
+		"minify",
+		[
+			"@babel/env",
+			{
+				"exclude": ["transform-typeof-symbol"]
+			}
+		]
+	]
+}

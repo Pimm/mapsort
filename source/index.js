@@ -67,8 +67,8 @@ export default function mapSort(list, mapCallback, compareFunction) {
 			return;
 		}
 		// If the default compare function will be used, ensure the "sortable" value is not a symbol. That function does
-		// not accept symbol values. [4] (Note that we are compiling this code with Babel, and our current configuration
-		// makes the typeof operator work as expected even when a Symbol polyfill is in use.)
+		// not accept symbol values. [4] (This would not work if Symbol is polyfilled. However, Symbol is widely supported
+		// and trying to sort a symbol is an edge case anyway. This shouldn't cause any real-world issues.)
 		if (undefined === compareFunction && 'symbol' === typeof sortable) {
 			throw new TypeError(`Can't convert symbol to string`);
 		}
@@ -91,7 +91,6 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	// const result = [...indexes.map(index => list[index]), ...tail];
 	//   ↓ (The line above is replaced by these four lines below for engines which don't support the spread syntax.)
 	const result = indexes.map(index => list[index]).concat(tail);
-
 	// In case the passed list is sparse ‒ meaning it does not have a value for every index in [0…length) ‒ the result
 	// array should include "room" for those missing values.
 	if (result.length != list.length) {
