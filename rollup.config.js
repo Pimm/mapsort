@@ -1,5 +1,5 @@
 const path = require('path');
-const babel = require('rollup-plugin-babel');
+const { babel } = require('@rollup/plugin-babel');
 
 const packageConfiguration = require('./package.json');
 
@@ -24,6 +24,6 @@ export default {
 		}
 	],
 	plugins: [
-		babel({ comments: false, minified: true })
+		babel({ comments: false, minified: true, babelHelpers: 'bundled' })
 	]
 };
