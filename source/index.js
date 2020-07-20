@@ -89,7 +89,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	// The indexes in the indexes array are now in the correct order. Create a new array which contains the original
 	// values, but in that correct order, followed by the tail.
 	// const result = [...indexes.map(index => list[index]), ...tail];
-	//   ↓ (The line above is replaced by these four lines below for engines which don't support the spread syntax.)
+	//   ↓ (The line above is replaced by this line below for engines which don't support the spread syntax.)
 	const result = indexes.map(index => list[index]).concat(tail);
 	// In case the passed list is sparse ‒ meaning it does not have a value for every index in [0…length) ‒ the result
 	// array should include "room" for those missing values.
