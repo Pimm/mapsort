@@ -43,7 +43,7 @@ import mapSort from 'mapsort';
 
 Alternatively, include `mapsort` through unpkg:
 ```html
-<script src="https://unpkg.com/mapsort@^1.0.3"></script>
+<script src="https://unpkg.com/mapsort@^1.0.4"></script>
 ```
 This alternative makes the function available at `window.mapSort`.
 

@@ -9,3 +9,7 @@
 ### 1.0.3
 
 * Fixed rare bug ([PR #2](https://github.com/Pimm/mapsort/pull/2)).
+
+### 1.0.4
+
+(No changes)
