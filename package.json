@@ -1,7 +1,7 @@
 {
   "name": "mapsort",
   "description": "Performant sorting for complex input",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "compiled/cjs/mapsort.min.js",
   "module": "compiled/esm/mapsort.min.js",
   "unpkg": "compiled/iife/mapsort.min.js",
