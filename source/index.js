@@ -43,7 +43,7 @@ const { forEach } = [];
  */
 export default function mapSort(list, mapCallback, compareFunction) {
 	// Ensure the map callback is a function. [1]
-	if ('function' !== typeof mapCallback) {
+	if ('function' != typeof mapCallback) {
 		// throw new TypeError(`${mapCallback} is not a function`);
 		//   ↓ (We are compiling this code with Babel, and our current configuration compiles the above into something
 		//     overly complex.)
@@ -69,7 +69,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 		// If the default compare function will be used, ensure the "sortable" value is not a symbol. That function does
 		// not accept symbol values. [4] (This would not work if Symbol is polyfilled. However, Symbol is widely supported
 		// and trying to sort a symbol is an edge case anyway. This shouldn't cause any real-world issues.)
-		if (undefined === compareFunction && 'symbol' === typeof sortable) {
+		if (undefined === compareFunction && 'symbol' == typeof sortable) {
 			throw new TypeError(`Can't convert symbol to string`);
 		}
 		// Push the index to the array of indexes.
