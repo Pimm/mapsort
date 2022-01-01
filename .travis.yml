@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "10"
+  - "14"
 install:
   - npm install
   - npm install -g coveralls
 script:
   - npm test
-  - npm run-script coverage
+  - npm run coverage
