@@ -15,19 +15,19 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
     "@rollup/plugin-babel": "^5.3.0",
-    "babel-jest": "^27.0.2",
-    "babel-loader": "^8.2.2",
+    "babel-jest": "^27.4.5",
+    "babel-loader": "^8.2.3",
     "babel-preset-minify": "^0.5.1",
     "benchmark": "^2.1.4",
-    "jest": "^27.0.3",
+    "jest": "^27.4.5",
     "lodash": "^4.17.21",
-    "rollup": "^2.50.5",
-    "typescript": "^4.3.2",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
+    "rollup": "^2.62.0",
+    "typescript": "^4.5.4",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
   },
   "scripts": {
     "build": "rollup --config rollup.config.js",
