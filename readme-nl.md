@@ -25,7 +25,7 @@ Het enige nadeel is dat `parseFloat` twee keer wordt aangeroepen iedere keer dat
 
 Enkele tientallen aanroepen naar `parseFloat` is prima. Maar in de toekomst sorteren we misschien namen. _Lucia Ávila_ wilt tussen de andere **A**'s staan, daarvoor moeten we rekening houden met [schrijftekens](https://nl.wikipedia.org/wiki/Diakritisch_teken). _Amelie de Wit_ wilt tussen de andere **W**'s staan, daarvoor moeten we [tussenvoegsels](https://nl.wikipedia.org/wiki/Tussenvoegsel) detecteren. En het aantal keren dat de vergelijkfunctie wordt gebruikt, groeit loglineair met het aantal namen. Als de verwerking die we moeten toepassen duurder wordt en de arrays langer, kan dit voelbare vertraging opleveren.
 
-`mapsort` verlaagt het aantal keren dat een element wordt verwerkt tot 1:
+`mapsort` beperkt het aantal keren dat een element wordt verwerkt tot 1:
 ```javascript
 mapSort(
 	['12.4', '1.62', '3.35'],
