@@ -33,7 +33,7 @@
     "build": "rollup --config rollup.config.js",
     "build-conceptual-benchmark": "webpack --config benchmarks/conceptual/webpack.config.js",
     "test": "npm run-script build && jest && tsc --strict --noEmit --types \" \" test/type-test.ts",
-    "coverage": "TEST_TYPE=coverage jest --coverage --coverageReporters=text-lcov | coveralls"
+    "coverage": "TEST_TYPE=coverage jest --coverage"
   },
   "author": {
     "name": "Nullhouse",

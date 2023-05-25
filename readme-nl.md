@@ -1,4 +1,4 @@
-# mapsort &middot; [![Licentie (X11/MIT)](https://badgen.net/github/license/pimm/mapsort)](https://github.com/Pimm/mapsort/blob/master/copying.txt) [![npm versie](https://badgen.net/npm/v/mapsort)](https://www.npmjs.com/package/mapsort) [![Build Status](https://api.travis-ci.com/Pimm/mapsort.svg?branch=master)](https://app.travis-ci.com/github/Pimm/mapsort) [![Coverage status](https://coveralls.io/repos/github/Pimm/mapsort/badge.svg?branch=master)](https://coveralls.io/github/Pimm/mapsort?branch=master)
+# mapsort &middot; [![Licentie (X11/MIT)](https://badgen.net/github/license/pimm/mapsort)](https://github.com/Pimm/mapsort/blob/master/copying.txt) [![npm versie](https://badgen.net/npm/v/mapsort)](https://www.npmjs.com/package/mapsort) [![Test status](https://github.com/Pimm/mapsort/actions/workflows/test.yaml/badge.svg)](https://github.com/Pimm/mapsort/actions/workflows/test.yaml) [![Coverage status](https://coveralls.io/repos/github/Pimm/mapsort/badge.svg?branch=master)](https://coveralls.io/github/Pimm/mapsort?branch=master)
 
 Efficiënte sortering van complexe invoer.
 
