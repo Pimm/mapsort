@@ -3,6 +3,14 @@ import defaultCompareFunction from './defaultCompareFunction';
 // Steal the forEach function from this empty array.
 const { forEach } = [];
 /**
+ * Ensures the passed argument is a function. If not, throws a `TypeError`.
+ */
+function check(argument) {
+	if ('function' != typeof argument) {
+		throw new TypeError(argument + ' is not a function');
+	}
+}
+/**
  * Sorts the elements of the passed list and returns a new, sorted array. The elements are first mapped to a version
  * which is ideal for sorting before the original elements are ultimately sorted. Doing this in two steps reduces the
  * overall overhead.
@@ -42,12 +50,10 @@ const { forEach } = [];
  * or `sorted`.
  */
 export default function mapSort(list, mapCallback, compareFunction) {
-	// Ensure the map callback is a function. [1]
-	if ('function' != typeof mapCallback) {
-		// throw new TypeError(`${mapCallback} is not a function`);
-		//   ↓ (We are compiling this code with Babel, and our current configuration compiles the above into something
-		//     overly complex.)
-		throw new TypeError(mapCallback + ' is not a function');
+	// Ensure the map callback is a function [1], and the compare function is either a function or undefined [2].
+	check(mapCallback);
+	if (undefined !== compareFunction) {
+		check(compareFunction);
 	}
 	// Create an array which will contain the indexes (or "indices") of the items in the list.
 	const indexes = [];
@@ -58,18 +64,19 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	const tail = [];
 	var sortable;
 	forEach.call(list, (item, index, listAsObject) => {
-		// Call the map callback to obtain the "sortable" value. [2]
+		// Call the map callback to obtain the "sortable" value. [3]
 		sortable = mapCallback(item, index, listAsObject);
 		// If the "sortable" value is undefined, exclude this item from sorting and add it to the tail. undefined items
-		// shall appear at the end of the resulting array. [3]
+		// shall appear at the end of the resulting array. [4]
 		if (undefined === sortable) {
 			tail.push(item);
 			return;
 		}
 		// If the default compare function will be used, ensure the "sortable" value is not a symbol. That function does
-		// not accept symbol values. [4] (This would not work if Symbol is polyfilled. However, Symbol is widely supported
-		// and trying to sort a symbol is an edge case anyway. This shouldn't cause any real-world issues.)
-		if (undefined === compareFunction && 'symbol' == typeof sortable) {
+		// not accept symbol values. [5] This would not work if Symbol is polyfilled. However, Symbol is widely supported
+		// and trying to sort a symbol is an edge case anyway. This shouldn't cause any real-world issues. As the compare
+		// function is guaranteed to be either a function or undefined, it is safe to use the ! operator.
+		if (!compareFunction && 'symbol' == typeof sortable) {
 			throw new TypeError(`Can't convert symbol to string`);
 		}
 		// Push the index to the array of indexes.
@@ -78,10 +85,9 @@ export default function mapSort(list, mapCallback, compareFunction) {
 		sortables[index] = sortable;
 	});
 	// If no compare function was passed, use this default function. This mimics the behaviour of Array.prototype.sort
-	// with no compare function.
-	if (undefined === compareFunction) {
-		compareFunction = defaultCompareFunction;
-	}
+	// with no compare function. As the compare function is guaranteed to be either a function or undefined, it is safe
+	// to use the ||= operator instead of the (less widely supported) ??= operator.
+	compareFunction ||= defaultCompareFunction;
 	// Sort the indexes by looking up and comparing the "sortable" values associated with those indexes.
 	indexes.sort((firstIndex, secondIndex) => compareFunction(sortables[firstIndex], sortables[secondIndex]));
 	//   ↓ We could guarantee stability by changing this line:
@@ -102,7 +108,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 // values.
 //
 // Imagine we have this array as input:
-//   [{number: 0xC6}, {number: 0x7B}, {number: 0xD5}]
+//   [{ number: 0xC6 }, { number: 0x7B }, { number: 0xD5 }]
 // and this map callback:
 //   object => object.number
 // and this compare function:
@@ -121,18 +127,20 @@ export default function mapSort(list, mapCallback, compareFunction) {
 // (because 0x7B < 0xC6 < 0xD5).
 //
 // Finally, the resulting array is created and filled according to the order defined by the array of indexes:
-//   [{number: 0x7B}, {number: 0xC6}, {number: 0xD5}]
+//   [{ number: 0x7B }, { number: 0xC6 }, { number: 0xD5 }]
 //
 // This implementation is designed to mimic [].map and [].sort as defined in ECMAScript 2015.
 //
 // [1] See the spec for Array.prototype.map:
 //     4. If IsCallable(callbackfn) is false, throw a TypeError exception.
-// [2] See the spec for Array.prototype.map:
+// [2] See the spec for Array.prototype.sort:
+//     1. If comparefn is not undefined and IsCallable(comparefn) is false, throw a TypeError exception.
+// [3] See the spec for Array.prototype.map:
 //    10. d. iii. Let mappedValue be Call(callbackfn, T, «kValue, k, O»).
-// [3] See the spec for SortCompare:
+// [4] See the spec for SortCompare:
 //     2. If x is undefined, return 1.
 //     3. If y is undefined, return −1.
-// [4] See the spec for SortCompare:
+// [5] See the spec for SortCompare:
 //     5. Let xString be ToString(x).
 //     6. ReturnIfAbrupt(xString).
 //     7. Let yString be ToString(y).
