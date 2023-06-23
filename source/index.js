@@ -1,7 +1,5 @@
 import defaultCompareFunction from './defaultCompareFunction';
 
-// Steal the forEach function from this empty array.
-const { forEach } = [];
 /**
  * Ensures the passed argument is a function. If not, throws a `TypeError`.
  */
@@ -63,7 +61,7 @@ export default function mapSort(list, mapCallback, compareFunction) {
 	// undefined).
 	const tail = [];
 	var sortable;
-	forEach.call(list, (item, index, listAsObject) => {
+	indexes.forEach.call(list, (item, index, listAsObject) => {
 		// Call the map callback to obtain the "sortable" value. [3]
 		sortable = mapCallback(item, index, listAsObject);
 		// If the "sortable" value is undefined, exclude this item from sorting and add it to the tail. undefined items
