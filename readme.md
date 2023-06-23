@@ -13,25 +13,21 @@ Performant sorting for complex input.
 
 Imagine we are sorting this array of numbers, represented as strings:
 ```javascript
-['12.4', '1.62', '3.35']
+['12', '1', '3.14']
 ```
-Sorting them with no compare function would place `'12.4'` before `'3.35'`, so we need such a function:
+Sorting them with no compare function would place `'12'` before `'3.14'`, so we need such a function:
 ```javascript
-['12.4', '1.62', '3.35'].sort((a, b) => parseFloat(a) - parseFloat(b));
+['12', '1', '3.14'].sort((a, b) => parseFloat(a) - parseFloat(b));
 ```
 This works!
 
-The only drawback is that `parseFloat` is called twice every time our compare function is used, resulting in 6 `parseFloat` calls in this example (4 if the original order were optimal).
+The drawback is that `parseFloat` is called twice every time our compare function is used. Sorting three numbers results in 6 (or 4) `parseFloat` calls, of which only 3 are strictly necessary.
 
-A dozen `parseFloat` calls is fine. However, next time we might be sorting names. _Lucia Ávila_ would like to appear amidst the other **A**s, and we have to correctly handle [diacritics](https://en.wikipedia.org/wiki/Diacritic). _Amelie de Wit_ would like to appear amidst the other **W**s, and we have to detect [tussenvoegsels](https://en.wikipedia.org/wiki/Tussenvoegsel). And the number of calls to the compare function grows loglinearly with the number of names. As our preprocessing becomes more expensive and our arrays become longer, this could produce perceivable hiccups.
+3 or 6 `parseFloat` calls makes no difference. However, next time we might be sorting names. _Lucia Ávila_ would like to appear amidst the other **A**s, thus we have to correctly handle [diacritics](https://en.wikipedia.org/wiki/Diacritic). _Amelie de Wit_ would like to appear amidst the other **W**s, thus we have to detect [tussenvoegsels](https://en.wikipedia.org/wiki/Tussenvoegsel). And the number of calls to the compare function grows loglinearly with the number of names. As our preprocessing becomes more expensive and our arrays become longer, this could produce perceivable hiccups.
 
 `mapsort` reduces the number of times an element is preprocessed to 1:
 ```javascript
-mapSort(
-	['12.4', '1.62', '3.35'],
-	parseFloat,
-	(a, b) => a - b
-);
+mapSort(['12', '1', '3.14'], parseFloat, (a, b) => a - b);
 ```
 
 # Installation
@@ -67,8 +63,7 @@ const sortedArray = mapSort(
 
 ## Notes
 
-* Contrary to [`[].sort`][mdn-sort], this library **does not sort in-place**. It returns a new, sorted array. The original array is left untouched.
-* This library maps each element of your array to a "sortable" version but returns a sorted array containing the originals. I.e. in the example above `['1.62', '3.35', '12.4']` is returned; not `[1.62, 3.35, 12.4]`.
+* Contrary to [`[].sort`][mdn-sort], this library **does not sort in-place**. It returns a new, sorted array. The original array is left untouched
 * This library [probably][stable-sorting] performs stable sorting.
 
 # License (X11/MIT)

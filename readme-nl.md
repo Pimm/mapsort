@@ -13,25 +13,21 @@ Efficiënte sortering van complexe invoer.
 
 Stel je voor dat we deze array van getallen sorteren, vertegenwoordigd als strings:
 ```javascript
-['12.4', '1.62', '3.35']
+['12', '1', '3.14']
 ```
-`'12.4'` zou voor `'3.35'` worden geplaatst als we sorteren zonder vergelijkfunctie, dus hebben we zo een functie nodig:
+`'12'` zou voor `'3.14'` worden geplaatst als we sorteren zonder vergelijkfunctie, dus zo een functie is vereist:
 ```javascript
-['12.4', '1.62', '3.35'].sort((a, b) => parseFloat(a) - parseFloat(b));
+['12', '1', '3.14'].sort((a, b) => parseFloat(a) - parseFloat(b));
 ```
 Dat werkt!
 
-Het enige nadeel is dat `parseFloat` twee keer wordt aangeroepen iedere keer dat onze vergelijkfunctie wordt gebruikt. `parseFloat` wordt daardoor 6 keer aangeroepen in dit voorbeeld (4 keer als de originele volgorde optimaal was geweest).
+Het nadeel is dat `parseFloat` twee keer wordt aangeroepen iedere keer dat onze vergelijkfunctie wordt gebruikt. Bij het sorteren van drie getallen wordt `parseFloat` 6 (of 4) keer aangeroepen, terwijl het met 3 keer ook kan.
 
-Enkele tientallen aanroepen naar `parseFloat` is prima. Maar in de toekomst sorteren we misschien namen. _Lucia Ávila_ wilt tussen de andere **A**'s staan, daarvoor moeten we rekening houden met [schrijftekens](https://nl.wikipedia.org/wiki/Diakritisch_teken). _Amelie de Wit_ wilt tussen de andere **W**'s staan, daarvoor moeten we [tussenvoegsels](https://nl.wikipedia.org/wiki/Tussenvoegsel) detecteren. En het aantal keren dat de vergelijkfunctie wordt gebruikt, groeit loglineair met het aantal namen. Als de verwerking die we moeten toepassen duurder wordt en de arrays langer, kan dit voelbare vertraging opleveren.
+`parseFloat` 3 of 6 keer aanroepen maakt geen verschil. Maar in de toekomst sorteren we misschien namen. _Lucia Ávila_ wilt tussen de andere **A**'s staan, daarvoor moeten we rekening houden met [schrijftekens](https://nl.wikipedia.org/wiki/Diakritisch_teken). _Amelie de Wit_ wilt tussen de andere **W**'s staan, daarvoor moeten we [tussenvoegsels](https://nl.wikipedia.org/wiki/Tussenvoegsel) detecteren. En het aantal keren dat de vergelijkfunctie wordt gebruikt, groeit loglineair met het aantal namen. Als de verwerking die we moeten toepassen duurder wordt en de arrays langer, kan dit voelbare vertraging opleveren.
 
 `mapsort` beperkt het aantal keren dat een element wordt verwerkt tot 1:
 ```javascript
-mapSort(
-	['12.4', '1.62', '3.35'],
-	parseFloat,
-	(a, b) => a - b
-);
+mapSort(['12', '1', '3.14'], parseFloat, (a, b) => a - b);
 ```
 
 # Installatie
@@ -68,7 +64,6 @@ const sortedArray = mapSort(
 ## Opmerkingen
 
 * In tegenstelling tot [`[].sort`][mdn-sort], **sorteert deze bibliotheek niet _in-place_**. Er wordt een nieuwe, gesorteerde array teruggegeven. De originele array wordt niet beïnvloed.
-* Deze bibliotheek mapt ieder element in je array naar een "sorteerbare" versie maar geeft een gesorteerde array terug van de originelen. In het voorbeeld hierboven wordt `['1.62', '3.35', '12.4']` teruggegeven; niet `[1.62, 3.35, 12.4]`.
 * Deze bibliotheek sorteert [waarschijnlijk][stable-sorting] stabiel.
 
 # Licentie (X11/MIT)
