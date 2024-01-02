@@ -17,7 +17,7 @@ Stel je voor dat we deze array van getallen sorteren, vertegenwoordigd als strin
 ```
 `'12'` zou voor `'3.14'` worden geplaatst als we sorteren zonder vergelijkfunctie, dus zo een functie is vereist:
 ```javascript
-['12', '1', '3.14'].sort((a, b) => parseFloat(a) - parseFloat(b));
+['12', '1', '3.14'].toSorted((a, b) => parseFloat(a) - parseFloat(b));
 ```
 Dat werkt!
 
@@ -63,7 +63,7 @@ const sortedArray = mapSort(
 
 ## Opmerkingen
 
-* In tegenstelling tot [`[].sort`][mdn-sort], **sorteert deze bibliotheek niet _in-place_**. Er wordt een nieuwe, gesorteerde array teruggegeven. De originele array wordt niet beïnvloed.
+* Deze bibliotheek sorteert niet _in-place_, en lijkt daarmee meer op [`[].toSorted`][mdn-tosorted] dan [`[].sort`][mdn-sort].
 * Deze bibliotheek sorteert [waarschijnlijk][stable-sorting] stabiel.
 
 # Licentie (X11/MIT)
@@ -76,5 +76,6 @@ The above copyright notice and this permission notice shall be included in all c
 **The Software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the Software or the use or other dealings in the Software.**
 
 
+[mdn-tosorted]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted
 [mdn-sort]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 [stable-sorting]: https://github.com/Pimm/mapsort/blob/master/documentation/stable-sorting-nl.md

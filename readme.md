@@ -17,7 +17,7 @@ Imagine we are sorting this array of numbers, represented as strings:
 ```
 Sorting them with no compare function would place `'12'` before `'3.14'`, so we need such a function:
 ```javascript
-['12', '1', '3.14'].sort((a, b) => parseFloat(a) - parseFloat(b));
+['12', '1', '3.14'].toSorted((a, b) => parseFloat(a) - parseFloat(b));
 ```
 This works!
 
@@ -63,7 +63,7 @@ const sortedArray = mapSort(
 
 ## Notes
 
-* Contrary to [`[].sort`][mdn-sort], this library **does not sort in-place**. It returns a new, sorted array. The original array is left untouched
+* This library does not sort in-place, making it more similar to [`[].toSorted`][mdn-tosorted] than [`[].sort`][mdn-sort].
 * This library [probably][stable-sorting] performs stable sorting.
 
 # License (X11/MIT)
@@ -76,5 +76,6 @@ The above copyright notice and this permission notice shall be included in all c
 **The Software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the Software or the use or other dealings in the Software.**
 
 
+[mdn-tosorted]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted
 [mdn-sort]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 [stable-sorting]: https://github.com/Pimm/mapsort/blob/master/documentation/stable-sorting.md
