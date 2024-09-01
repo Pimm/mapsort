@@ -17,3 +17,7 @@
 ### 1.0.9
 
 * Added compare function type check.
+
+### 1.0.10
+
+(No changes)

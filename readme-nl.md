@@ -39,7 +39,7 @@ import mapSort from 'mapsort';
 
 Als alternatief kan `mapsort` ook worden binnengehaald met unpkg:
 ```html
-<script src="https://unpkg.com/mapsort@^1.0.9"></script>
+<script src="https://unpkg.com/mapsort@^1.0.10"></script>
 ```
 Met deze aanpak wordt de functie beschikbaar als `window.mapSort`.
 
