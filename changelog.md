@@ -18,6 +18,6 @@
 
 * Added compare function type check.
 
-### 1.0.10
+### 1.0.10, 1.0.11
 
 (No changes)
